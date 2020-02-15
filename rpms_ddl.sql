@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS contractors (
 );
 
 -- Таблица связи контрагентов с оказываемыми услугами
-CREATE TABLE contractors_service_types_links (
+CREATE TABLE contractor_service_type_links (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	contractor_id INT UNSIGNED NOT NULL,
 	service_type_id INT UNSIGNED NOT NULL,
