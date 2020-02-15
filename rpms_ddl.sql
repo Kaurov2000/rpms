@@ -192,12 +192,15 @@ CREATE TABLE bills (
 	issuer_id INT UNSIGNED NOT NULL,
 	bill_amount DECIMAL(2),
 	payment_date DATE,
+	user_id INT UNSIGNED NOT NULL,
 	create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
 	update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	delete_time DATETIME,
 	PRIMARY KEY (bill_id),
 	CONSTRAINT bills_contract_id_fk FOREIGN KEY (contract_id) REFERENCES contracts(contract_id),
-	CONSTRAINT bills_issuer_type_id_fk FOREIGN KEY (issuer_type_id) REFERENCES counterpart_types(id)
+	CONSTRAINT bills_issuer_type_id_fk FOREIGN KEY (issuer_type_id) REFERENCES counterpart_types(id),
+	CONSTRAINT bills_user_id_fk FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
+
 
 
