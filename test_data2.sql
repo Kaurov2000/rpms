@@ -713,7 +713,9 @@ INSERT INTO `contractor_service_type_links` (`contractor_id`, `service_type_id`)
 INSERT INTO `contractor_service_type_links` (`contractor_id`, `service_type_id`) VALUES (28, 8);
 INSERT INTO `contractor_service_type_links` (`contractor_id`, `service_type_id`) VALUES (29, 3);
 INSERT INTO `contractor_service_type_links` (`contractor_id`, `service_type_id`) VALUES (30, 5);
-
+INSERT INTO `contractor_service_type_links` (`contractor_id`, `service_type_id`) VALUES (30, 9);
+INSERT INTO `contractor_service_type_links` (`contractor_id`, `service_type_id`) VALUES (30, 7);
+INSERT INTO `contractor_service_type_links` (`contractor_id`, `service_type_id`) VALUES (10, 2);
 
 
 INSERT INTO `document_types` (`document_type`) VALUES ('certificate of ownership');
