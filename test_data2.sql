@@ -2531,6 +2531,6 @@ INSERT INTO `bills` (bill_number, issue_date, contract_id, bill_amount, due_date
 ('88','1975-11-20','254','1058.00','2004-12-27','Expedita ab deleniti.','2016-05-15','1989-08-11 12:07:47','1976-03-22 16:45:14',NULL),
 ('337547','1979-09-01','188','1848.60','2013-01-02','Distinctio sunt laboriosam.','2017-01-22','2008-08-18 13:00:14','2009-04-01 18:12:47',NULL);
 
-
+UPDATE bills SET payment_date = NULL WHERE (id mod 2) = 0;
 
 
