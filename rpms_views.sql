@@ -1,6 +1,6 @@
 -- Представление с активами всех польователей
-DROP VIEW IF EXISTS users_assets;
-CREATE VIEW users_assets AS
+DROP VIEW IF EXISTS user_assets;
+CREATE VIEW user_assets AS
 SELECT 
 	u.id as user_id,
 	a.id as asset_id,
@@ -15,8 +15,8 @@ FROM users u INNER JOIN assets a ON u.id = a.user_id
 ORDER BY user_id;
 	
 -- Представление со всеми расчетами по активам
-DROP VIEW IF EXISTS assets_bills;
-CREATE VIEW assets_bills AS
+DROP VIEW IF EXISTS asset_bills;
+CREATE VIEW asset_bills AS
 SELECT
 	a.id as asset_id,
 	ct.contract_type ,
@@ -52,11 +52,13 @@ FROM assets a LEFT JOIN contracts c ON a.id = c.asset_id
 ORDER BY asset_id, last_name, issue_date;
 
 -- Представление "Расчеты с поставщиками услуг"
+DROP VIEW IF EXISTS contractor_bills;
+CREATE VIEW contractor_bills AS
 SELECT 
 	a.id as asset_id,
 	b.id as bill_id,
-	st.service_type,
 	cn.name as contractor,
+	st.service_type,
 	b.issue_date,
 	b.bill_amount,
 	b.due_date,
@@ -67,13 +69,9 @@ FROM assets a LEFT JOIN contracts c ON a.id = c.asset_id
  	LEFT JOIN (contractor_service_type_links cs
  			INNER JOIN service_types st ON st.id = cs.service_type_id) 
  		ON cs.id = c.counterpart_id 
-	LEFT JOIN contractors cn ON cn.id = cs.id 
+	LEFT JOIN contractors cn ON cn.id = cs.contractor_id 
  	LEFT JOIN bills b ON b.contract_id = c.id
 ORDER BY asset_id, contractor, issue_date;
-
-SELECT * from bills where id = 612;
-select * from contracts c where id = 303;
-select * from contractor_service_type_links cstl;
 
 
 
