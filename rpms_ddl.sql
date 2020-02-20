@@ -159,7 +159,6 @@ CREATE TABLE contracts (
 	CONSTRAINT contracts_contract_type_id_fk FOREIGN KEY (contract_type_id) REFERENCES contract_types(id)
 );
 
-Drop table bills;
 
 -- Таблица со счетами
 CREATE TABLE bills (
@@ -179,4 +178,13 @@ CREATE TABLE bills (
 );
 
 
-
+CREATE TABLE  client_overdue_payments_log (
+	log_entry_date DATE NOT NULL, 
+	user_id INT UNSIGNED NOT NULL, 
+	asset_id INT UNSIGNED NOT NULL, 
+	bill_id INT UNSIGNED NOT NULL, 
+	overdue_days INT,
+	client_id INT UNSIGNED NOT NULL,
+	client_name VARCHAR(201),
+	PRIMARY KEY (log_entry_date, client_id, bill_id)
+);
