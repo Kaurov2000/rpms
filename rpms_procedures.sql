@@ -32,11 +32,12 @@ BEGIN
 	WHERE b.due_date < CURRENT_DATE() AND b.payment_date is NULL
 	RETURN coalesce(bill_id, 0);
 END//
+
 -- Процедура собирает таблицу с фактами просрочки платежа клиентами 
-DROP PROCEDURE IF EXISTS overdue_payments_log;
-CREATE PROCEDURE overdue_payments_log
+DROP PROCEDURE IF EXISTS update_overdue_payments_log;
+CREATE PROCEDURE update_overdue_payments_log
 BEGIN
-	INSERT INTO client_overdue_payments 
+	INSERT INTO client_overdue_payments_log
 		(log_entry_date, user_id, asset_id, bill_id, overdue_days, client_id, client_name)
 	SELECT 
 		CURRENT_DATE() as log_entry_date,
