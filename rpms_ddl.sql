@@ -151,6 +151,8 @@ CREATE TABLE contracts (
 	contract_type_id INT UNSIGNED NOT NULL,
 	counterpart_id INT UNSIGNED NOT NULL,
 	payment_day INT,
+	contract_amount DECIMAL(12,2),
+	contract_duration INT UNSIGNED,
 	contract_file VARCHAR(200) NOT NULL,
 	create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
 	update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -159,6 +161,7 @@ CREATE TABLE contracts (
 	CONSTRAINT contracts_asset_id_fk FOREIGN KEY (asset_id) REFERENCES assets(id),
 	CONSTRAINT contracts_contract_type_id_fk FOREIGN KEY (contract_type_id) REFERENCES contract_types(id)
 );
+
 
 
 -- Таблица со счетами
