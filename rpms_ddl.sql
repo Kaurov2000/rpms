@@ -181,7 +181,7 @@ CREATE TABLE bills (
 	CONSTRAINT bills_contract_id_fk FOREIGN KEY (contract_id) REFERENCES contracts(id)
 );
 
-
+-- Журнал просроченной задолженности
 CREATE TABLE  client_overdue_payments_log (
 	log_entry_date DATE NOT NULL, 
 	user_id INT UNSIGNED NOT NULL, 

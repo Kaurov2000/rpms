@@ -2535,4 +2535,6 @@ INSERT INTO `bills` (bill_number, issue_date, contract_id, bill_amount, due_date
 
 UPDATE bills SET payment_date = NULL WHERE (id mod 2) = 0;
 
-UPDATE contracts c set c.payment_day = (SELECT MIN(DAYOFMONTH(b.due_date - INTERVAL 5 DAY)) FROM bills b where b.contract_id = c.id); 
+UPDATE contracts c SET c.payment_day = (SELECT MIN(DAYOFMONTH(b.due_date - INTERVAL 5 DAY)) FROM bills b where b.contract_id = c.id); 
+
+UPDATE contracts c SET c.contract_amount = (SELECT AVG(b.bill_amount)  FROM bills b where b.contract_id = c.id);

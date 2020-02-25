@@ -18,8 +18,10 @@ ORDER BY user_id;
 DROP VIEW IF EXISTS asset_bills;
 CREATE VIEW asset_bills AS
 SELECT
+	a.user_id,
 	a.id as asset_id,
-	ct.contract_type ,
+	a.name as asset_name,
+	ct.contract_type,
 	c.name as contract_name,
 	b.id as bill_id,
 	b.issue_date,
@@ -29,13 +31,14 @@ SELECT
 FROM assets a LEFT JOIN contracts c ON a.id = c.asset_id
 	INNER JOIN contract_types ct ON c.contract_type_id = ct.id 
 	LEFT JOIN bills b ON b.contract_id = c.id
-ORDER BY asset_id, issue_date;
+ORDER BY user_id, asset_id, issue_date;
 
 
 -- Представление "Расчеты с арендаторами"
 DROP VIEW IF EXISTS client_bills;
 CREATE VIEW client_bills AS
 SELECT
+	a.user_id,
 	a.id as asset_id,
 	cl.first_name,
 	cl.last_name,
@@ -49,12 +52,13 @@ FROM assets a LEFT JOIN contracts c ON a.id = c.asset_id
 		(SELECT ct.id FROM contract_types ct WHERE ct.contract_type = 'income')
  	LEFT JOIN clients cl ON cl.id = c.counterpart_id 
 	LEFT JOIN bills b ON b.contract_id = c.id
-ORDER BY asset_id, last_name, issue_date;
+ORDER BY user_id, asset_id, last_name, issue_date;
 
 -- Представление "Расчеты с поставщиками услуг"
 DROP VIEW IF EXISTS contractor_bills;
 CREATE VIEW contractor_bills AS
 SELECT 
+	a.user_id,
 	a.id as asset_id,
 	b.id as bill_id,
 	cn.name as contractor,
