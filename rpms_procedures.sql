@@ -64,7 +64,7 @@ BEGIN
 		c.id,
 		c.contract_amount,
 		CURRENT_DATE() + INTERVAL 5 DAY,
-		CONCAT('Asset: ', a.name ,'; Client: ', c2.first_name, ' ', c2.first_name )
+		CONCAT('Asset: ', a.name ,'; Client: ', c2.last_name, ' ', c2.first_name )
 	FROM contracts c 
 		INNER JOIN clients c2 ON c2.id = c.counterpart_id
 		INNER JOIN assets a ON c.asset_id =a.id 
