@@ -16,6 +16,7 @@ BEGIN
 		'Insert cancelled: counterpart_id for expense contracts must reference contractor_service_type_links.id';
 	 END IF;
 END//
+
 -- Проверка на наличие неоплаченных счетов. Функция возвращает колическтво
 -- просроченных счетов по объекту
 DROP FUNCTION IF EXISTS overdue_payments_count //
@@ -54,6 +55,9 @@ BEGIN
 		INNER JOIN assets a ON a.id = c.asset_id 
 	WHERE b.due_date < CURRENT_DATE() AND b.payment_date is NULL
 END//
+
+-- Процедура создает счета
+DROP PROCEDURE IF EXISTS automatic_bills_
 
 DELIMITER ;
 
